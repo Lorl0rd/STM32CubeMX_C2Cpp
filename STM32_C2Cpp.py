@@ -3,24 +3,24 @@
 '''
 import os
 
-if __name__ == '__main':
-    path = './Core/Src'  # here is where main.c is generated and the last main.cpp is
+if __name__ == "__main__":
+    path = './Core/Src/'  # here is where main.c is generated and the last main.cpp is
     filename_c = 'main.c'
     filename_cpp = 'main.cpp'
 
     # read in lines of files
     c_lines = []
     cpp_lines = []
-    with open(path+filename_c, 'r') as f:
+    with open(path+filename_c, mode = 'r', encoding = 'utf-8') as f:
         c_lines = f.readlines()
-    with open(path+filename_cpp, 'r') as f:
+    with open(path+filename_cpp, mode = 'r', encoding = 'utf-8') as f:
         cpp_lines = f.readlines()
 
     should_copy=False
     no_copy_user_code=False
     same_lines=False
     
-    with open(path+filename_c, 'w') as fc:
+    with open(path+filename_c, mode = 'w', encoding = 'utf-8') as fc:
         # write all generated code into main.c
         for c_line in c_lines:
             # copy cpp lines after every USER CODE BEGIN statement
@@ -47,3 +47,4 @@ if __name__ == '__main':
     # delete main.cpp then rename main.c to main.cpp
     os.remove(path+filename_cpp)
     os.rename(path+filename_c, path+filename_cpp)
+    
